@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Minesweeper</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, ser-scalable=no"/>
+
+    <!-- Latest compiled and minified Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- custom CSS -->
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+</head>
+<body>
+
+  <div id="page" class="container">
+
+	 <div id="anzeige" class="btn-group">
+
+	  	<button type="button" id="timer" class="btn btn-default glyphicon glyphicon-time" disabled ></button>
+	  	<button type="button" id="neuBtn" class="btn btn-warning glyphicon glyphicon-refresh" ></button>
+	  	<button type="button" id="menuBtn" class="btn btn-success glyphicon glyphicon-info-sign" ></button>
+	  	<button type="button" id="flagsBtn" class="btn btn-primary glyphicon glyphicon-flag" ></button>
+	 	<button type="button" id="flags" class="btn btn-default glyphicon" disabled ></button>
+
+	 </div>
+
+  	<div id="wrapper">
+  		<div class="btn tile"></div>
+  	</div>
+
+  	<div class="panel panel-primary">
+      <div id="bestTry" class="panel-heading">Best Try</div>
+	  <div id="lastTry" class="panel-body">Last Try</div>
+    </div>
+
+  	<div id="gameOver" class="modal fade" role="dialog">
+  		<div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Modal Header</h4>
+		      </div>
+		      <div class="modal-body">
+		        <p>Some text in the modal.</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" data-dismiss="modal">New Game</button>
+		      </div>
+		    </div>
+
+		</div>
+	</div>
+
+	<div id="gameMenu" class="modal fade" role="dialog">
+  		<div class="modal-dialog">
+
+		    <!-- Modal content-->
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal">&times;</button>
+		        <h4 class="modal-title">Game Menu</h4>
+		      </div>
+		      <div class="modal-body">
+				<div class="radio">
+			        <label class="checkbox-inline"><input type="radio" name="level" value="0">Easy</label>
+			    </div>
+				<div class="radio">
+					<label class="checkbox-inline"><input type="radio" name="level" value="1" checked="checked">Normal</label>
+				</div>
+				<div class="radio">
+					<label class="checkbox-inline"><input type="radio" name="level" value="2">Hard</label>
+				</div>
+				<div class="radio">
+					<label class="checkbox-inline"><input type="radio" name="level" value="3">Very Hard</label>
+				</div>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-primary" data-dismiss="modal">Save</button>
+		      </div>
+		    </div>
+
+		</div>
+	</div>
+
+  </div>
+
+  <script type="text/javascript" src="script.js"></script>
+
+</body>
+</html>

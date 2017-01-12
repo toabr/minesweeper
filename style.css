@@ -1,0 +1,51 @@
+body {
+	margin: 0;
+	padding: 0;
+	background: white;
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+}
+
+#page {
+	position: relative;
+}
+
+#anzeige {
+	text-align: center;
+	margin: 0 auto;
+}
+
+.btn-group {
+	width: 101%;
+}
+
+#wrapper {
+	position: relative;
+	text-align: center;
+	margin: 10px auto;
+	font-size: 20px;
+}
+
+#anzeige button {
+	width: 20%;
+	display: inline-block;
+	margin-top: 10px;
+}
+
+.container {
+	padding-left: 10px;
+	padding-right: 10px;
+}
+
+.tile {
+	background: navy;
+	color: #fff;
+	border-color: #337ab7;
+	font-size: 20px;
+	padding: 0;
+	position: absolute;
+}
+
+.visible {
+	background: lightblue;
+	opacity: 0.8;
+}
