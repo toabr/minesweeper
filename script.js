@@ -8,8 +8,13 @@
  *
  * ======================================================================== */
 
-var Feld = (function() {
-	'use strict';
+'use strict';
+
+$( document ).ready(function() {
+  Feld();
+});
+
+var Feld = function() {
 
 	//  "global" variables
 	//======================
@@ -27,7 +32,7 @@ var Feld = (function() {
 
 	//  Caching the Dom
 	//===================
-	var	$el 		= $('#page'),
+	var	$el 		= $('#app'),
 			$timer 		= $el.find('#timer'),
 			$aufAnfang 	= $el.find('#neuBtn'),
 			$flagActive = $el.find('#flagsBtn'),
@@ -55,7 +60,10 @@ var Feld = (function() {
 	$menuBtn.click(function(){ $gameMenu.modal() });
 	$gmBtn.click(init);
 
+	//  Start Game
+	//======================================================
 	init();
+
 
 	function init() {
 		board 		= [];
@@ -88,8 +96,8 @@ var Feld = (function() {
 
 	function _buildBoard()
 	{
-		var pageWidth = Number;
-		var tileX = _tileX();
+		var pageWidth = Number,
+				tileX = _tileX();
 
 		spielFeld();
 		spreadBombs();
@@ -138,8 +146,8 @@ var Feld = (function() {
 
 		function spreadBombs()
 		{
-			var randX;
-			var randY;
+			var randX,
+					randY;
 
 			for(var i = 0; i < bombs; i++) {
 				randX = Math.round(Math.random() * (xTiles - 1));
@@ -180,11 +188,10 @@ var Feld = (function() {
 
 	function _getNeighbors(Y, X, char)
 	{
-		var y = Number(Y);
-		var x = Number(X);
-		var rand = xTiles - 1;
-
-		var ausgabe = new Array();
+		var y = Number(Y),
+				x = Number(X),
+				rand = xTiles - 1,
+				ausgabe = new Array();
 
 		if(y===0){
 
@@ -279,11 +286,11 @@ var Feld = (function() {
 
 		function getChain(input)
 		{
-			var leveln = input;
-			var level1 = input;
-			var level0;
-			var temp;
-			var coord;
+			var leveln = input,
+					level1 = input,
+					level0,
+					temp,
+					coord;
 
 			while(level1.length > 0) {
 				input = level1;
@@ -302,10 +309,10 @@ var Feld = (function() {
 
 		function getNumbers(input)
 		{
-			var temp1;
-			var temp2;
-			var zahlen = new Array();
-			var alleZahlen = new Array();
+			var temp1,
+					temp2,
+					zahlen = new Array(),
+					alleZahlen = new Array();
 
 			for(var i = 0; i < input.length; i++) {
 
@@ -333,9 +340,8 @@ var Feld = (function() {
 		}
 	}
 
-	/* ========================================================================
-	 * 		Tile Module
-	 * ========================================================================*/
+	// Tile Module
+	//======================================================
 
 	function Tile()
 	{
@@ -352,8 +358,8 @@ var Feld = (function() {
 
 	function _renderTile(y,x)
 	{
-		var tile = board[y][x];
-		var $kachel = _findKachel(y,x);
+		var tile = board[y][x],
+				$kachel = _findKachel(y,x);
 
 		if(flagActive) {
 			$kachel.toggleClass('glyphicon glyphicon-flag btn-danger');
@@ -394,9 +400,9 @@ var Feld = (function() {
 			var x = coord.x;
 		}
 
-		var $kachel = _findKachel(y, x);
-		var tile = board[y][x];
-		var key = e.button;
+		var $kachel = _findKachel(y, x),
+				tile = board[y][x],
+				key = e.button;
 
 		if(key === 2 || flagActive) {
 			rechtsKlick();
@@ -450,9 +456,9 @@ var Feld = (function() {
 				}
 			}
 		}
-		/* ==================================================
-		 * 		GAME OVER
-		 * ==================================================*/
+
+		// GAME OVER
+		//======================================================
 
 		function win()
 		{
@@ -498,9 +504,8 @@ var Feld = (function() {
 		}
 	}
 
-	/* ========================================================================
-	* 		Helpers
-	* ========================================================================*/
+	// Helpers
+	//======================================================
 
 	function _findCoord(kachel)
 	{
@@ -538,9 +543,9 @@ var Feld = (function() {
 		return temp;
 	}
 
-	/* ========================================================================
-	* 		Module API
-	* ========================================================================*/
+	// Module API
+	//======================================================
+
 	return {
 		init: init,
 		click: function(y,x,key){
@@ -552,5 +557,6 @@ var Feld = (function() {
 			_testTile(moduleEvt);
 		},
 	}
-})();
+
+}
 
