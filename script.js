@@ -1,14 +1,11 @@
 /* ========================================================================
  *
  * 					Minesweapeaper Spielboard Modul
-	
-	event: 	click(evt)	> Identifikation
-						> event || valueue
-
- 	api: 	Feld.click(x,y) > process // alle nötigen Spielregeln werden ausgeführt
-			Tile.neighbors(x,y) > daten // modularisierung!!
-			neighbors.kettenreaktion > daten
- * 
+ *
+ *	api:	Feld.click(x,y) > process // alle nötigen Spielregeln werden ausgeführt
+ *				Tile.neighbors(x,y) > daten // modularisierung!!
+ *				neighbors.kettenreaktion > daten
+ *
  * ======================================================================== */
 
 var Feld = (function() {
@@ -16,39 +13,39 @@ var Feld = (function() {
 
 	//  "global" variables
 	//======================
-	var board = new Array();
-	var xTiles;
-	var bombs;
-	var flagActive = false;
-	var flags;
-	var rightFlags;
-	var visibles;
-	var bestTry;
-	var clicks;
-	var timer;
-	var sec;
+	var board = new Array(),
+			xTiles,
+			bombs,
+			flagActive = false,
+			flags,
+			rightFlags,
+			visibles,
+			bestTry,
+			clicks,
+			timer,
+			sec;
 
 	//  Caching the Dom
 	//===================
-	var $el 		= $('#page');
-	var $timer 		= $el.find('#timer');
-	var $aufAnfang 	= $el.find('#neuBtn');
-	var $flagActive = $el.find('#flagsBtn');
-	var $flags 		= $el.find('#flags');
-	var $brett 		= $el.find('#wrapper');
-	var template 	= $brett.html();
+	var	$el 		= $('#page'),
+			$timer 		= $el.find('#timer'),
+			$aufAnfang 	= $el.find('#neuBtn'),
+			$flagActive = $el.find('#flagsBtn'),
+			$flags 		= $el.find('#flags'),
+			$brett 		= $el.find('#wrapper'),
+			template 	= $brett.html(),
 
-	var $gameOver 		= $el.find('#gameOver');
-	var $gameOverTitle  = $gameOver.find('.modal-title');
-	var $gameOverBody   = $gameOver.find('.modal-body');
-	var $gameOverButton = $gameOver.find('.modal-footer button');
+			$gameOver 		= $el.find('#gameOver'),
+			$gameOverTitle  = $gameOver.find('.modal-title'),
+			$gameOverBody   = $gameOver.find('.modal-body'),
+			$gameOverButton = $gameOver.find('.modal-footer button'),
 
-	var $bestTry 	= $el.find('#bestTry');
-	var $lastTry 	= $el.find('#lastTry');
+			$bestTry 	= $el.find('#bestTry'),
+			$lastTry 	= $el.find('#lastTry'),
 
-	var $menuBtn	= $el.find('#menuBtn');
-	var $gameMenu	= $el.find('#gameMenu');
-	var $gmBtn 		= $gameMenu.find('.modal-footer button');
+			$menuBtn	= $el.find('#menuBtn'),
+			$gameMenu	= $el.find('#gameMenu'),
+			$gmBtn 		= $gameMenu.find('.modal-footer button');
 
 	//  Bind Events
 	//===============
@@ -103,7 +100,7 @@ var Feld = (function() {
 			if(window.screen.height > window.screen.width) {
 				pageWidth = window.screen.width;
 			}else pageWidth = window.screen.height - 200;
-			
+
 			var tileX = (pageWidth - 20) / xTiles;
 
 			return tileX;
@@ -119,7 +116,7 @@ var Feld = (function() {
 			for(var y = 0; y < xTiles; y++) {
 				board[y] = new Array();
 				for(var x = 0; x < xTiles; x++) {
-					
+
 					// build board
 					var kachel = $(template).css({
 						"width":tileX,
@@ -129,7 +126,7 @@ var Feld = (function() {
 						});
 					kachel.attr("id",y + "_" + x);
 					kachel.mousedown(_testTile);
-					kachel.bind("contextmenu", function(e){ return false; });				
+					kachel.bind("contextmenu", function(e){ return false; });
 					$brett.append(kachel);
 
 					// fill array
@@ -176,7 +173,7 @@ var Feld = (function() {
 	}
 
 	function _timer()
-	{	
+	{
 		sec++;
 		$timer.text(sec);
 	}
@@ -190,7 +187,7 @@ var Feld = (function() {
 		var ausgabe = new Array();
 
 		if(y===0){
-			
+
 			// Links Oben
 			if(x===0){
 				if(board[y][x+1].value	=== char) ausgabe.push((y) + "_" + (x+1)) ;
@@ -327,7 +324,7 @@ var Feld = (function() {
 				alleZahlen = alleZahlen.concat(zahlen);
 				//console.log(zahlen);
 
-				// Alle neighbors aufdecken 
+				// Alle neighbors aufdecken
 				for(var j = 0; j < zahlen.length; j++) {
 					temp2 = zahlen[j].split("_");
 					getRendered(temp2[0],temp2[1]);
@@ -345,7 +342,7 @@ var Feld = (function() {
 		var value = 0;
 		var visible = false;
 		var flag = false;
-		
+
 		return {
 			value: value,
 			visible: visible,
@@ -405,21 +402,21 @@ var Feld = (function() {
 			rechtsKlick();
 
 		}else linksClick();
-	
+
 
 		//  Normal Click
 		//================
 		function linksClick()
-		{			
+		{
 			if(!tile.flag) {
 				if (tile.value == "x") {
 					// Lose - Game Over
 					lose();
-					
+
 				}else if (tile.value == 0)  {
 					_nullTile( y, x );
 					clicks++;
-					
+
 				}else {
 					board[y][x].visible = true;
 					_renderTile( y, x );
@@ -462,7 +459,7 @@ var Feld = (function() {
 			seeAll();
 			clearInterval(timer);
 			console.log('WIN');
-		
+
 			if(typeof bestTry === 'undefined' || sec < bestTry) {
 				bestTry = sec;
 				$bestTry.text('Best Try: ' + sec + ' seconds - ' + clicks + ' clicks');
@@ -480,7 +477,7 @@ var Feld = (function() {
 			}
 		}
 
-		function lose() 
+		function lose()
 		{
 			seeAll();
 			clearInterval(timer);
