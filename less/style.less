@@ -1,3 +1,7 @@
+// Bootstrap library.
+@import "bootstrap";
+
+
 body {
 	margin: 0;
 	padding: 0;
@@ -18,7 +22,7 @@ body {
 	width: 101%;
 }
 
-#wrapper {
+#board {
 	position: relative;
 	text-align: center;
 	margin: 10px auto;
@@ -36,10 +40,8 @@ body {
 	padding-right: 10px;
 }
 
-.tile {
-	background: navy;
-	color: #fff;
-	border-color: #337ab7;
+.btn-tile {
+	.button-variant(white; navy; #337ab7);
 	font-size: 20px;
 	padding: 0;
 	position: absolute;
@@ -49,3 +51,4 @@ body {
 	background: lightblue;
 	opacity: 0.8;
 }
+

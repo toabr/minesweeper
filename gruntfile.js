@@ -8,14 +8,19 @@ module.exports = function(grunt){
           compress: true,
         },
         files: {
-          'style.min.css': 'less/style.less'
+          'css/style.min.css': 'less/style.less'
         },
       },
     },
     uglify: {
-      my_target: {
+      game: {
         files: {
-          'script.min.js': ['js/*.js']
+          'js/script.min.js': ['js/game.js'],
+        },
+      },
+      bootstrap: {
+        files: {
+          'js/bootstrap.min.js': ['bootstrap/js/button.js','bootstrap/js/modal.js']
         },
       },
     },
@@ -29,7 +34,7 @@ module.exports = function(grunt){
         },
       },
       scripts: {
-        files: 'js/*.js',
+        files: 'js/game.js',
         tasks: ['uglify'],
       },
     },

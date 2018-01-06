@@ -36,8 +36,8 @@ var minesweeper = function()
 			$aufAnfang 	= $app.find('#neuBtn'),
 			$flagActive = $app.find('#flagsBtn'),
 			$flags 			= $app.find('#flags'),
-			$brett 			= $app.find('#wrapper'),
-			template 		= $brett.html(),
+			$board 			= $app.find('#board'),
+			template 		= $board.html(),
 
 			$gameOver 			= $app.find('#gameOver'),
 			$gameOverTitle 	= $gameOver.find('.modal-title'),
@@ -116,7 +116,7 @@ var minesweeper = function()
 
 		function spielFeld()
 		{
-			$brett.empty().css({
+			$board.empty().css({
 				"width": pageWidth - 20,
 				"height": pageWidth - 20
 			});
@@ -135,7 +135,7 @@ var minesweeper = function()
 					kachel.attr("id",y + "_" + x);
 					kachel.mousedown(_testTile);
 					kachel.bind("contextmenu", function(e){ return false; });
-					$brett.append(kachel);
+					$board.append(kachel);
 
 					// fill array
 					var tile = new Tile();
@@ -518,7 +518,7 @@ var minesweeper = function()
 
 	function _findKachel(y,x)
 	{
-		return $brett.find("#" + y + "_" + x);
+		return $board.find("#" + y + "_" + x);
 	}
 
 	function _entfDoppelte(array1, array2)
