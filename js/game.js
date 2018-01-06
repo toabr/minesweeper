@@ -1,6 +1,5 @@
-/* ========================================================================
- *
- * 					Minesweapeaper Spielboard Modul
+/* =======================================================================*
+ *				Minesweeper
  *
  *	api:	Feld.click(x,y) > process // alle nötigen Spielregeln werden ausgeführt
  *				Tile.neighbors(x,y) > daten // modularisierung!!
@@ -11,11 +10,11 @@
 'use strict';
 
 $( document ).ready(function() {
-  Feld();
+  minesweeper();
 });
 
-var Feld = function() {
-
+var minesweeper = function()
+{
 	//  "global" variables
 	//======================
 	var board = new Array(),
@@ -32,48 +31,49 @@ var Feld = function() {
 
 	//  Caching the Dom
 	//===================
-	var	$el 		= $('#app'),
-			$timer 		= $el.find('#timer'),
-			$aufAnfang 	= $el.find('#neuBtn'),
-			$flagActive = $el.find('#flagsBtn'),
-			$flags 		= $el.find('#flags'),
-			$brett 		= $el.find('#wrapper'),
-			template 	= $brett.html(),
+	var	$app 				= $('#app'),
+			$timer 			= $app.find('#timer'),
+			$aufAnfang 	= $app.find('#neuBtn'),
+			$flagActive = $app.find('#flagsBtn'),
+			$flags 			= $app.find('#flags'),
+			$brett 			= $app.find('#wrapper'),
+			template 		= $brett.html(),
 
-			$gameOver 		= $el.find('#gameOver'),
-			$gameOverTitle  = $gameOver.find('.modal-title'),
-			$gameOverBody   = $gameOver.find('.modal-body'),
+			$gameOver 			= $app.find('#gameOver'),
+			$gameOverTitle 	= $gameOver.find('.modal-title'),
+			$gameOverBody 	= $gameOver.find('.modal-body'),
 			$gameOverButton = $gameOver.find('.modal-footer button'),
 
-			$bestTry 	= $el.find('#bestTry'),
-			$lastTry 	= $el.find('#lastTry'),
+			$bestTry 	= $app.find('#bestTry'),
+			$lastTry 	= $app.find('#lastTry'),
 
-			$menuBtn	= $el.find('#menuBtn'),
-			$gameMenu	= $el.find('#gameMenu'),
+			$menuBtn 	= $app.find('#menuBtn'),
+			$gameMenu = $app.find('#gameMenu'),
 			$gmBtn 		= $gameMenu.find('.modal-footer button');
 
-	//  Bind Events
-	//===============
-	$aufAnfang.click(init);
-	$gameOverButton.click(init);
+	//  Bind Eventlistener
+	//=====================
+	$aufAnfang.click(start);
+	$gameOverButton.click(start);
 	$flagActive.click(_flagBtnClick);
 	$menuBtn.click(function(){ $gameMenu.modal() });
-	$gmBtn.click(init);
+	$gmBtn.click(start);
 
-	//  Start Game
-	//======================================================
-	init();
+	//  Game Logic
+	//===============================================================
+	start();
 
-
-	function init() {
-		board 		= [];
-		xTiles 		= 10;
+	function start()
+	{
+		// reset values
+		board 			= [];
+		xTiles 			= 10;
 		rightFlags 	= 0;
-		visibles 	= 0;
-		clicks 		= 0;
+		visibles 		= 0;
+		clicks 			= 0;
 		//bombs 		= 10;
 		gameMenu();
-		flags 		= bombs;
+		flags 			= bombs;
 
 		sec = 0;
 		clearInterval(timer);
@@ -97,7 +97,7 @@ var Feld = function() {
 	function _buildBoard()
 	{
 		var pageWidth = Number,
-				tileX = _tileX();
+				tileX 		= _tileX();
 
 		spielFeld();
 		spreadBombs();
@@ -547,7 +547,7 @@ var Feld = function() {
 	//======================================================
 
 	return {
-		init: init,
+		start: start,
 		click: function(y,x,key){
 			var moduleEvt = {
 				y: y,
