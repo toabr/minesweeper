@@ -13,11 +13,11 @@ var game = {
 
 	boardMap: [],
 	bombsMap: [],
-	boardSpan: 10,
+	boardSpan: 8,
 	board: null,
-	bombs: 10,
+	bombs: 8,
 	flagMode: false,
-	score: this.boardSpan + 5,
+	get score() { return Math.pow(this.boardSpan,2) - this.bombs },
 
 	start: function() {
 		// reset values
@@ -26,6 +26,7 @@ var game = {
 		this.buildBoard();
 		this.spreadBombs();
 		this.spreadNums();
+		// this.score = Math.pow(this.boardSpan,2) - this.bombs;
 	},
 
 	restart: function() {
@@ -39,15 +40,21 @@ var game = {
 	setHandlers: function() {
 		document.getElementById('reloadBtn').addEventListener('click', this.restart);
 		document.getElementById('toggleFlagModeBtn').addEventListener('click', this.toggleFlagMode);
+		// document.getElementById('menuBtn').addEventListener('click', modal);
 	},
 
 	buildBoard: function() {
 		for(var y=0; y<this.boardSpan; y++) {
-		  var row = [];
+		  var row = [],
+		  		htmlRow = document.createElement('div');
+		  		htmlRow.className = 'btn-group btn-block';
 		  for(var x=0; x<this.boardSpan; x++) {
-		    row.push(new Tile(x, y));
+		  	var tile = new Tile(x,y);
+		    row.push(tile);
+		    htmlRow.appendChild(tile.btn);
 		  }
 		  this.boardMap[y] = row;
+		  this.board.appendChild(htmlRow);
 		}
 	},
 
@@ -153,11 +160,11 @@ function Tile(x, y) {
   this.flag = false;
   this.revealed = false;
   var btn = document.createElement('button');
-		  btn.className = 'btn btn-primary';
+		  btn.className = 'btn btn-tile';
 		  btn.innerHTML = '+';
 		  btn.addEventListener('click', this, false);
   this.btn = btn;
-  game.board.appendChild(btn);
+  // game.board.appendChild(btn);
 
   objects.push(this);
 }
@@ -227,7 +234,7 @@ Tile.prototype.clean = function() {
 	this.danger = 0;
   this.bomb = false;
   this.flag = false;
-  this.btn.className = 'btn btn-primary';
+  this.btn.className = 'btn btn-tile';
   this.btn.innerHTML = '+';
 }
 
