@@ -13,9 +13,12 @@ module.exports = function(grunt){
       },
     },
     uglify: {
+      options: {
+        compress: false
+      },
       game: {
         files: {
-          'js/script.min.js': ['js/game.js'],
+          'js/script.min.js': ['js/extendArray.js','js/game.js'],
         },
       },
       bootstrap: {

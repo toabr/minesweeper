@@ -14,12 +14,16 @@ body {
 }
 
 #anzeige {
+	&.btn-group {
+		width: 101%;
+	}
 	text-align: center;
 	margin: 0 auto;
-}
-
-.btn-group {
-	width: 101%;
+	button {
+		width: 20%;
+		display: inline-block;
+		margin-top: 10px;
+	}
 }
 
 #board {
@@ -29,26 +33,24 @@ body {
 	font-size: 20px;
 }
 
-#anzeige button {
-	width: 20%;
-	display: inline-block;
-	margin-top: 10px;
-}
-
 .container {
 	padding-left: 10px;
 	padding-right: 10px;
 }
 
-.btn-tile {
-	.button-variant(white; navy; #337ab7);
+.btn {
 	font-size: 20px;
 	padding: 0;
-	position: absolute;
+	width: 10%;
+	height: auto;
 }
 
-.visible {
-	background: lightblue;
-	opacity: 0.8;
+.btn-tile {
+	.button-variant(white; navy; #337ab7);
 }
+
+.btn-flag-active {
+	.button-variant(white; orange; red);
+}
+
 
