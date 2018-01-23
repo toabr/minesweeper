@@ -38,9 +38,9 @@ var game = {
 	},
 
 	setHandlers: function() {
-		document.getElementById('reloadBtn').addEventListener('click', this.restart);
-		document.getElementById('toggleFlagModeBtn').addEventListener('click', this.toggleFlagMode);
-		// document.getElementById('menuBtn').addEventListener('click', modal);
+		$('.reload').click(this.restart);
+		$('#toggleFlagModeBtn').click(this.toggleFlagMode);
+		$('#menuBtn').click(function(){ $('#gameMenu').modal() });
 	},
 
 	buildBoard: function() {
@@ -120,7 +120,6 @@ var game = {
 				if(!neighborList.contains(tmp[i])) {
 					if(!tile.flag && !tile.revealed) {
 						if(tile.danger === 0) {
-							console.log('render');
 							neighborList.push(tmp[i]);
 							neighbors.push(tmp[i]);
 						}else {
@@ -159,74 +158,82 @@ function Tile(x, y) {
   this.bomb = false;
   this.flag = false;
   this.revealed = false;
-  var btn = document.createElement('button');
+  var btn = document.createElement('div');
 		  btn.className = 'btn btn-tile';
-		  btn.innerHTML = '+';
 		  btn.addEventListener('click', this, false);
+	var icon = document.createElement('span');
+			// icon.className = 'glyphicon glyphicon-plus';
+			icon.innerHTML = '';
+	this.icon = icon;
   this.btn = btn;
-  // game.board.appendChild(btn);
+  this.btn.appendChild(this.icon);
+
+  this.addEvents();
 
   objects.push(this);
 }
 
+Tile.prototype.addEvents = function () {
+  this.btn.addEventListener('click', this);
+}
+
+Tile.prototype.removeEvents = function () {
+  this.btn.removeEventListener('click', this);
+}
+
 Tile.prototype.handleEvent = function(e) {
-    switch (e.type) {
-        case 'click': this.click(e);
-    }
+  switch (e.type) {
+      case 'click': this.click(e);
+  }
 }
 
 Tile.prototype.click = function(e) {
-	if(!this.revealed) {
-		if(!game.flagMode) {
-			if (!this.bomb) {
-		  	if(!this.danger > 0) {
-		  		this.render();
-		  		game.revealNeighbors(this.x, this.y);
-		  	}else {
-		  		this.render();
-		  	}
-		  }else {
-		  	this.render();
-		  }
-		}else {
-			this.toggleFlag();
-		}
+	console.log('click ' + this.x + ':' + this.y);
+// LET THE RENDER FUNCTION DO THE RENDER STUFF !!!
+	if(game.flagMode) {
+		this.toggleFlag();
+	}else if(!this.revealed && !this.flag) {
+		if (!this.bomb) {
+	  	if(!this.danger > 0) {
+	  		game.revealNeighbors(this.x, this.y);
+	  	}else {
+	  		this.render();
+	  	}
+	  }else {
+	  	this.render();
+	  	$('#gameOver').modal();
+	  }
 	}
 }
 
 Tile.prototype.setBomb = function() {
 	this.bomb = true;
-	this.btn.className = 'btn btn-danger';
-	this.btn.innerHTML = 'X';
+	// this.btn.className = 'btn btn-bomb';
+	// this.btn.innerHTML = 'X';
 }
 
 Tile.prototype.addDanger = function() {
 	this.danger++;
-	this.btn.innerHTML = this.danger;
+	// this.btn.innerHTML = this.danger;
 }
 
 Tile.prototype.toggleFlag = function() {
-	// if(!this.flag) {
-	// 	this.flag = true;
-	// 	this.btn.innerHTML = 'F';
-	// } else {
-	// 	this.flag = false;
-	// 	this.btn.innerHTML = this.danger;
-	// }
 	this.flag = !this.flag;
-	this.btn.classList.toggle('btn-primary');
+	this.btn.classList.toggle('btn-tile');
 	this.btn.classList.toggle('btn-flag-active');
 	console.log('Flag: ' + this.flag);
 }
 
 Tile.prototype.render = function() {
+	console.log('render ' + this.x + ':' + this.y);
 	this.revealed = true;
+	this.removeEvents();
 	if(this.bomb) {
-		this.btn.className = 'btn btn-danger';
-		this.btn.innerHTML = 'X';
+		this.btn.className = 'btn btn-bomb';
 	}else {
-		this.btn.className = 'btn btn-success';
-		this.btn.innerHTML = this.danger;
+		this.btn.className = 'btn btn-revealed';
+		this.icon.className = '';
+		this.icon.innerHTML = this.danger;
 	}
 }
 
@@ -234,8 +241,12 @@ Tile.prototype.clean = function() {
 	this.danger = 0;
   this.bomb = false;
   this.flag = false;
+  this.revealed = false;
   this.btn.className = 'btn btn-tile';
-  this.btn.innerHTML = '+';
+  this.icon.className = 'glyphicon glyphicon-plus';
+  this.icon.innerHTML = '';
+  // this.btn.removeAttribute('disabled');
+  this.addEvents();
 }
 
 $( document ).ready(function() {

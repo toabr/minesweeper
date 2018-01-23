@@ -1,11 +1,9 @@
 // Bootstrap library.
 @import "bootstrap";
 
-
 body {
 	margin: 0;
 	padding: 0;
-	background: white;
 	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
 }
 
@@ -43,18 +41,35 @@ body {
 	padding-right: 10px;
 }
 
-.btn {
-	font-size: 20px;
-	padding: 0;
-	height: auto;
+.btn-tile {
+	.button-variant(@color2; @color1; @color2);
+	span {
+		.glyphicon;
+		.glyphicon-plus;
+	}
 }
 
-.btn-tile {
-	.button-variant(white; navy; #337ab7);
+.btn-revealed {
+	.button-variant(@color2; @color1-light; @color2);
+	cursor: not-allowed;
+}
+
+.btn-bomb {
+	.button-variant( white; @color2; @color2);
+	span {
+		.glyphicon;
+		.glyphicon-star-empty;
+	}
 }
 
 .btn-flag-active {
-	.button-variant(white; orange; red);
+	.button-variant(#ff9619; #2d2d2d; @color2);
+	span {
+		.glyphicon;
+		.glyphicon-flag;
+	}
 }
 
-
+.panel-score {
+	.panel-variant(@color2; @color1; @color2; @color2);
+}
