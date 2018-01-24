@@ -11,7 +11,7 @@ body {
 	position: relative;
 }
 
-#anzeige {
+#hud {
 	text-align: center;
 	margin: 0 auto;
 	button {
@@ -72,4 +72,36 @@ body {
 
 .panel-score {
 	.panel-variant(@color2; @color1; @color2; @color2);
+	.panel-title {
+		font-weight: bold;
+	}
+}
+
+.modal {
+	.close {
+		color: @color2;
+		opacity: 1;
+		font-size: 42px;
+		font-weight: normal;
+		text-shadow: unset;
+		line-height: 0.6;
+	}
+}
+
+@-webkit-keyframes blinking {
+  0%   { background-color: @color2; }
+  50%  { background-color: @color1-light; }
+  100% { background-color: @color2; }
+}
+
+@keyframes blinking {
+  0%   { background-color: @color2; }
+  50%  { background-color: @color1-light; }
+  100% { background-color: @color2; }
+}
+
+.blinking {
+	animation-name: blinking;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
 }

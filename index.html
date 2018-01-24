@@ -8,7 +8,6 @@
 
   <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
-  <script type="text/javascript" src="js/script.min.js"></script>
   <link rel="stylesheet" type="text/css" href="css/style.min.css">
 </head>
 <body>
@@ -16,25 +15,27 @@
   <div id="app" class="container">
 
     <!-- Game Menu -->
-    <div id="anzeige" class="btn-group btn-block">
+    <div id="hud" class="btn-group btn-block">
       <button type="button" id="timer" class="btn btn-default glyphicon glyphicon-time" disabled ></button>
       <button type="button" id="reloadBtn" class="btn btn-default glyphicon glyphicon-refresh reload" ></button>
       <button type="button" id="menuBtn" class="btn btn-default glyphicon glyphicon-info-sign" ></button>
-      <button type="button" id="toggleFlagModeBtn" class="btn btn-default glyphicon glyphicon-flag" ></button>
-      <button type="button" id="flags" class="btn btn-default glyphicon" disabled ></button>
+      <button type="button" id="flagModeBtn" class="btn btn-default glyphicon glyphicon-flag" ></button>
+      <button type="button" id="flagCount" class="btn btn-default glyphicon" disabled ></button>
     </div>
 
     <!-- Game Board -->
-    <div id="wrapper">
-      <div id="board">
-
-      </div>
-    </div>
+    <div id="board"></div>
 
     <!-- Scores -->
     <div class="panel panel-score">
-      <div id="bestTry" class="panel-heading">Best Try</div>
-      <div id="lastTry" class="panel-body">Last Try</div>
+      <div data-toggle="collapse" href="#collapse1" class="panel-heading">
+        <h2 class="panel-title">Best Try: <span id="bestTry"></span></h2>
+      </div>
+      <div id="collapse1" class="panel-collapse collapse in">
+        <div class="panel-body">Last Try
+          <div id="lastTry" class="list-group"></div>
+        </div>
+      </div>
     </div>
 
     <!-- Game over Modal -->
@@ -77,13 +78,15 @@
             </div>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Save</button>
+            <button type="button" class="btn btn-default reload" data-dismiss="modal">New Game</button>
           </div>
         </div>
       </div>
     </div>
 
   </div> <!-- END app -->
+
+  <script type="text/javascript" src="js/game.min.js"></script>
 
 </body>
 </html>

@@ -10,7 +10,9 @@
 
 
 // general colors
-@color1:  #221931; @color1-light: lighten(@color1, 13.5%);
+@color1:  #221931;
+@color1-light: lighten(@color1, 13.5%);
+@color1-alpha: rgba(34,25,49, 0.58);
 @color2:  #e52f45;
 @color3:  #8ab2ff;
 
@@ -35,7 +37,7 @@
 //
 //##
 
-@modal-content-bg:                             @color1;
+@modal-content-bg:                             @color1-alpha;
 @modal-content-border-color:                   @color2;
 
 @modal-header-border-color:   @color2;
@@ -49,3 +51,12 @@
 //** Border color for elements within panels
 @panel-inner-border:          #ddd;
 @panel-footer-bg:             #f5f5f5;
+
+//== List group
+//
+//##
+
+@list-group-bg:                 @color1;
+@list-group-border:             @color2;
+@list-group-hover-bg:           @color1-light;
+@list-group-link-color:         @color2;

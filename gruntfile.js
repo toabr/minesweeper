@@ -18,12 +18,12 @@ module.exports = function(grunt){
       },
       game: {
         files: {
-          'js/script.min.js': ['js/extendArray.js','js/game.js'],
+          'js/game.min.js': ['js/extendArray.js','js/tile.js','js/game.js'],
         },
       },
       bootstrap: {
         files: {
-          'js/bootstrap.min.js': ['bootstrap/js/button.js','bootstrap/js/modal.js']
+          'js/bootstrap.min.js': ['bootstrap/js/button.js','bootstrap/js/modal.js','bootstrap/js/collapse.js','bootstrap/js/transition.js']
         },
       },
     },
@@ -37,7 +37,7 @@ module.exports = function(grunt){
         },
       },
       scripts: {
-        files: 'js/game.js',
+        files: ['js/game.js','js/tile.js'],
         tasks: ['uglify'],
       },
     },
