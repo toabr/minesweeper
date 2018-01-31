@@ -1,6 +1,6 @@
 # Minesweeper webapp
 
-![picture of the app](src/minesweeper-webapp-02.png)
+![picture of the app](src/minesweeper-webapp_02.png)
 
 ### Installing
 
