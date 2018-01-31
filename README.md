@@ -1,18 +1,7 @@
-# React UI for an editable list of people
+# Minesweeper webapp
 
-![picture of the app](public/react-list-app.png)
+![picture of the app](src/minesweeper-webapp-02.png)
+
 ### Installing
 
-Just
-
-```
-npm install
-```
-
-And
-
-```
-npm start
-```
-#
-<small>Credits: [Traversy Media](https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA)</small>
+Just clone and play!
