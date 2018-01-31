@@ -8,7 +8,7 @@ module.exports = function(grunt){
           compress: true,
         },
         files: {
-          'css/style.min.css': 'less/style.less'
+          'dist/style.min.css': 'src/less/style.less'
         },
       },
     },
@@ -18,26 +18,31 @@ module.exports = function(grunt){
       },
       game: {
         files: {
-          'js/game.min.js': ['js/extendArray.js','js/tile.js','js/game.js'],
+          'dist/game.min.js': ['src/js/extendArray.js','src/js/tile.js','src/js/game.js'],
         },
       },
       bootstrap: {
         files: {
-          'js/bootstrap.min.js': ['bootstrap/js/button.js','bootstrap/js/modal.js','bootstrap/js/collapse.js','bootstrap/js/transition.js']
+          'dist/bootstrap.min.js': [
+              'src/bootstrap/js/button.js',
+              'src/bootstrap/js/modal.js',
+              'src/bootstrap/js/collapse.js',
+              'src/bootstrap/js/transition.js'
+              ]
         },
       },
     },
     // the watcher
     watch: {
       css: {
-        files: 'less/*.less',
+        files: 'src/less/*.less',
         tasks: ['less'],
         options: {
           livereload: true,
         },
       },
       scripts: {
-        files: ['js/game.js','js/tile.js'],
+        files: ['src/js/game.js','src/js/tile.js'],
         tasks: ['uglify'],
       },
     },

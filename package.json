@@ -1,8 +1,8 @@
 {
   "name": "Minesweeper",
-  "version": "1.0.0",
-  "description": "simple minesweeper game for browser",
-  "main": "script.js",
+  "version": "2.0.0",
+  "description": "awesome minesweeper webapp",
+  "main": "index.html",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,8 +13,7 @@
   "keywords": [
     "minesweeper",
     "game",
-    "simple",
-    "browser"
+    "webapp"
   ],
   "author": "c3To",
   "license": "ISC",
@@ -28,7 +27,5 @@
     "grunt-contrib-uglify": "^3.3.0",
     "grunt-contrib-watch": "^1.0.0"
   },
-  "dependencies": {
-    "jquery": "^3.2.1"
-  }
+  "dependencies": {}
 }

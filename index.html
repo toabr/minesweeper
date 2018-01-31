@@ -3,18 +3,15 @@
 <head>
 	<title>Minesweeper</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, ser-scalable=no"/>
-
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
-
-  <link rel="stylesheet" type="text/css" href="css/style.min.css">
+  <script type="text/javascript" src="dist/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="dist/style.min.css">
 </head>
 <body>
 
   <div id="app" class="container">
 
-    <!-- Game Menu -->
+    <!-- Menu -->
     <div id="hud" class="btn-group btn-block">
       <button type="button" id="timer" class="btn btn-default glyphicon glyphicon-time" disabled ></button>
       <button type="button" id="reloadBtn" class="btn btn-default glyphicon glyphicon-refresh reload" ></button>
@@ -23,7 +20,7 @@
       <button type="button" id="flagCount" class="btn btn-default glyphicon" disabled ></button>
     </div>
 
-    <!-- Game Board -->
+    <!-- Board -->
     <div id="board"></div>
 
     <!-- Scores -->
@@ -86,7 +83,7 @@
 
   </div> <!-- END app -->
 
-  <script type="text/javascript" src="js/game.min.js"></script>
+  <script type="text/javascript" src="dist/game.min.js"></script>
 
 </body>
 </html>
