@@ -1,38 +1,56 @@
-module.exports = function(grunt){
+module.exports = function (grunt) {
 
   // configuration
   grunt.initConfig({
     less: {
-      development: {
+      dist: {
         options: {
           compress: true,
         },
         files: {
-          'dist/style.min.css': 'src/less/style.less'
+          'dist/style.min.css': 'src/less/style.less',
         },
       },
     },
     uglify: {
       options: {
-        compress: false
+        compress: false,
       },
       game: {
         files: {
-          'dist/game.min.js': ['src/js/extendArray.js','src/js/tile.js','src/js/game.js'],
+          'dist/game.min.js': [
+            'src/js/extendArray.js',
+            'src/js/tile.js',
+            'src/js/game.js',
+          ],
         },
       },
       bootstrap: {
         files: {
           'dist/bootstrap.min.js': [
-              'src/bootstrap/js/button.js',
-              'src/bootstrap/js/modal.js',
-              'src/bootstrap/js/collapse.js',
-              'src/bootstrap/js/transition.js'
-              ]
+            'node_modules/bootstrap-less/js/button.js',
+            'node_modules/bootstrap-less/js/modal.js',
+            'node_modules/bootstrap-less/js/collapse.js',
+            'node_modules/bootstrap-less/js/transition.js',
+          ],
         },
       },
     },
-    // the watcher
+    copy: {
+      index: {
+        src: 'index.html',
+        dest: 'dist/',
+      },
+      fonts: {
+        cwd: 'node_modules/bootstrap-less/fonts', 
+        src: '*',
+        dest: 'dist/fonts/',
+        expand: true,
+      },
+    },
+    /* 
+        ### watch
+    */
     watch: {
       css: {
         files: 'src/less/*.less',
@@ -42,7 +60,7 @@ module.exports = function(grunt){
         },
       },
       scripts: {
-        files: ['src/js/game.js','src/js/tile.js'],
+        files: ['src/js/game.js', 'src/js/tile.js'],
         tasks: ['uglify'],
       },
     },
@@ -52,9 +70,14 @@ module.exports = function(grunt){
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
   // register tasks
-  grunt.registerTask('run', ['less','uglify']);
+  grunt.registerTask('style', ['less']);
+  grunt.registerTask('code', ['uglify']);
+  grunt.registerTask('kopie', ['copy']);
+
+  grunt.registerTask('build', ['less', 'uglify', 'copy']);
 
 };
 
