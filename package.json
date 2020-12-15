@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/toabr/minesweeper.git"
+    "url": "https://github.com/toabr/minesweeper.git"
   },
   "keywords": [
     "minesweeper",
