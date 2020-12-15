@@ -37,10 +37,6 @@ module.exports = function (grunt) {
       },
     },
     copy: {
-      index: {
-        src: 'index.html',
-        dest: 'dist/',
-      },
       fonts: {
         cwd: 'node_modules/bootstrap-less/fonts', 
         src: '*',
