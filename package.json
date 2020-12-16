@@ -2,7 +2,7 @@
   "name": "Minesweeper",
   "version": "3.0.0",
   "description": "awesome minesweeper webapp",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "grunt build && node .",
     "dev": "node . & grunt watch",

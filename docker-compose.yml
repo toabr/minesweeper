@@ -1,0 +1,16 @@
+version: "3.9"
+services:
+  app:
+    container_name: minesweeper_app
+    image: toabr/minesweeper:v1
+    build:
+      context: .
+      target: prod
+    # working_dir: /app       #comment out for build.target:prod
+    # entrypoint: /bin/sh     #comment out for build.target:prod
+    # stdin_open: true        #comment out for build.target:prod
+    # tty: true               #comment out for build.target:prod
+    ports:
+      - "8080:8080"
+    # volumes:                #comment out for build.target:prod
+    #   - ./src:/app/src      #comment out for build.target:prod

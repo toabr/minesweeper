@@ -6,22 +6,23 @@ COPY ./package.json /app/package.json
 RUN npm install
 
 RUN npm install -g grunt
-
-COPY ./src/ /app/src
 COPY ./gruntfile.js /app/gruntfile.js
-COPY ./server.js /app/server.js
-COPY ./index.html /app/index.html
 
-ENTRYPOINT [ "npm","run","start" ]
+COPY ./src/ /app/src/
+RUN grunt build
 
-# FROM node:12.4.0-alpine AS prod
+ENTRYPOINT [ "npm","run","dev" ]
 
-# WORKDIR /app/
-# COPY ./package.json /app/package.json
-# RUN npm install
-# COPY ./dist/ /app/dist/
+###########START NEW IMAGE###################
+FROM node:14.15.1-alpine AS prod
 
-# COPY ./server.js /app/server.js
-# COPY ./index.html /app/index.html
+WORKDIR /app/
+ENV NODE_ENV="production"
 
-# CMD node .
+RUN npm init -y
+RUN npm install express
+
+COPY --from=debug /app/dist/ /app/dist/
+COPY --from=debug /app/src/server.js /app/index.js
+
+CMD node .
