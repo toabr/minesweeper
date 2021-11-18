@@ -1,0 +1,47 @@
+:root {
+  --span-x: 8;
+  --span-y: 8;
+}
+
+#hud {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 0;
+}
+
+#flagModeBtn.active {
+  background-color: hotpink;
+}
+
+#board {
+  display: Grid;
+  gap: 0.5vmin;
+  grid-template-columns: repeat(var(--span-x), calc(85vmin / var(--span-x)));
+  grid-template-rows: repeat(var(--span-x), calc(85vmin / var(--span-x)));
+  justify-content: center;
+}
+
+#board .btn {
+  height: 100%;
+  color: white;
+  font-size: 2rem;
+  background-color: hotpink;
+  border-radius: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#board .btn-revealed {
+  color: hotpink;
+  background-color: rgb(255, 228, 242);
+}
+
+#board .btn-flag-active {
+  background-color: rgb(255, 183, 219);
+}
+
+#board .btn-bomb {
+  background-color: rgb(78, 33, 56);
+}

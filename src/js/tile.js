@@ -1,20 +1,23 @@
 // Tile Object
 // ================================================
 
-function Tile(x, y) {
+export default function Tile(x, y, clickHandler) {
   this.x = x;
   this.y = y;
   this.danger = 0;
   this.bomb = false;
   this.flag = false;
   this.revealed = false;
+  this.clickHandler = clickHandler
 
   var btn = document.createElement('div');
-      btn.className = 'btn btn-tile';
-      btn.addEventListener('click', this, false);
+  btn.className = 'btn btn-tile';
+  btn.dataset.x = this.x
+  btn.dataset.y = this.y
+  btn.addEventListener('click', this, false);
   var icon = document.createElement('span');
-      // icon.className = 'glyphicon glyphicon-plus';
-      icon.innerHTML = '';
+  // icon.className = 'glyphicon glyphicon-plus';
+  icon.innerHTML = '';
   this.icon = icon;
   this.btn = btn;
   this.btn.appendChild(this.icon);
@@ -32,7 +35,7 @@ Tile.prototype.removeEvents = function () {
 
 Tile.prototype.handleEvent = function(e) {
   switch (e.type) {
-      case 'click': game.click(this);
+    case 'click': this.clickHandler();
   }
 }
 

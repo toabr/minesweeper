@@ -3,9 +3,9 @@
 <head>
 	<title>Minesweeper</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, ser-scalable=no"/>
-  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script type="text/javascript" src="bootstrap.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="style.min.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script type="module" src="./js/game.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
 
@@ -14,9 +14,9 @@
     <!-- Menu -->
     <div id="hud" class="btn-group btn-block">
       <button type="button" id="timer" class="btn btn-default glyphicon glyphicon-time" disabled ></button>
-      <button type="button" id="reloadBtn" class="btn btn-default glyphicon glyphicon-refresh reload" ></button>
-      <button type="button" id="menuBtn" class="btn btn-default glyphicon glyphicon-info-sign" ></button>
-      <button type="button" id="flagModeBtn" class="btn btn-default glyphicon glyphicon-flag" ></button>
+      <button type="button" id="reloadBtn" class="btn btn-default glyphicon glyphicon-refresh reload" >reload</button>
+      <button type="button" id="menuBtn" class="btn btn-default glyphicon glyphicon-info-sign" >menu</button>
+      <button type="button" id="flagModeBtn" class="btn btn-default glyphicon glyphicon-flag" >flag-mode</button>
       <button type="button" id="flagCount" class="btn btn-default glyphicon" disabled ></button>
     </div>
 
@@ -82,8 +82,6 @@
     </div>
 
   </div> <!-- END app -->
-
-  <script type="text/javascript" src="game.min.js"></script>
 
 </body>
 </html>

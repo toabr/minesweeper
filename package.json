@@ -1,11 +1,12 @@
 {
   "name": "Minesweeper",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "awesome minesweeper webapp",
-  "main": "src/server.js",
+  "source": "./src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "grunt build && node .",
-    "dev": "node . & grunt watch",
+    "start": "parcel ./src/index.html",
+    "build": "parcel build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -23,15 +24,7 @@
     "url": "https://github.com/toabr/minesweeper/issues"
   },
   "homepage": "https://github.com/toabr/minesweeper#readme",
-  "dependencies": {
-    "express": "^4.16.1"
-  },
   "devDependencies": {
-    "bootstrap-less": "^3.3.8",
-    "grunt": "^1.3.0",
-    "grunt-contrib-copy": "^1.0.0",
-    "grunt-contrib-less": "^2.0.0",
-    "grunt-contrib-uglify": "^5.0.0",
-    "grunt-contrib-watch": "^1.1.0"
+    "parcel": "latest"
   }
 }

@@ -1,16 +1,14 @@
-version: "3.9"
+version: "3"
 services:
-  app:
-    container_name: minesweeper_app
-    image: toabr/minesweeper:v1
-    build:
-      context: .
-      target: prod
-    # working_dir: /app       #comment out for build.target:prod
-    # entrypoint: /bin/sh     #comment out for build.target:prod
-    # stdin_open: true        #comment out for build.target:prod
-    # tty: true               #comment out for build.target:prod
+  node:
+    image: "parcel-starter"
+    user: "node"
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./:/home/node/app
     ports:
-      - "8080:8080"
-    # volumes:                #comment out for build.target:prod
-    #   - ./src:/app/src      #comment out for build.target:prod
+      - "3000:1234"
+      - "38833:38833"
+    command: yarn start --hmr-port 38833
