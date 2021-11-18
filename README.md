@@ -2,9 +2,8 @@
 
 ![picture of the app](src/img/minesweeper-webapp_02.png)
 
-### using docker
+### install
+docker-compose run --rm node yarn
 
-    docker build -t minesweeper --target prod .
-    docker run -p 8080:8080 minesweeper
-or
-    docker compose up
+### run
+docker compose up
