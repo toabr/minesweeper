@@ -11,7 +11,7 @@ export default function Tile(x, y, clickHandler) {
   this.clickHandler = clickHandler
 
   var btn = document.createElement('div');
-  btn.className = 'btn btn-tile';
+  btn.className = 'tile';
   btn.dataset.x = this.x
   btn.dataset.y = this.y
   btn.addEventListener('click', this, false);
@@ -49,8 +49,7 @@ Tile.prototype.addDanger = function() {
 
 Tile.prototype.toggleFlag = function() {
   this.flag = !this.flag;
-  this.btn.classList.toggle('btn-tile');
-  this.btn.classList.toggle('btn-flag-active');
+  this.btn.classList.toggle('flag');
 }
 
 Tile.prototype.render = function() {
@@ -58,9 +57,9 @@ Tile.prototype.render = function() {
   this.revealed = true;
   this.removeEvents();
   if(this.bomb) {
-    this.btn.className = 'btn btn-bomb';
+    this.btn.className = 'tile bomb';
   }else {
-    this.btn.className = 'btn btn-revealed';
+    this.btn.className = 'tile revealed';
     this.icon.className = '';
     this.icon.innerHTML = this.danger;
   }

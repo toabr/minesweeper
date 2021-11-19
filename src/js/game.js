@@ -43,6 +43,7 @@ var game = (function() {
   init();
 
   function init() {
+    boardColoring()
     gameMenu();
     buildBoard();
     toggleFlagMode(false);
@@ -266,6 +267,12 @@ var game = (function() {
     $gameOver.find('.modal-body').html(messages[state].body)
       .append(' ' + sec + ' seconds');
     $gameOver.modal();
+  }
+
+  function boardColoring() {
+    const tone = Math.round(Math.random()* 360) 
+    console.log(tone)
+    document.documentElement.style.setProperty("--tone", tone)
   }
 
   function clickHandler() {
